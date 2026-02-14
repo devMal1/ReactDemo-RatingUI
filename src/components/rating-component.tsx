@@ -1,6 +1,7 @@
 import { useState } from "react"
 
 import { Star } from "./star-component.tsx"
+import { Modal } from "./modal-component.tsx"
 
 interface RatingProps {
   heading?: string
@@ -15,8 +16,20 @@ export const Rating = ({
 }: RatingProps) => {
   const [rating, setRating] = useState<number>(0)
   const [hovered, setHovered] = useState<number>(0)
+  const [submitted, setSubmitted] = useState<boolean>(false)
 
   const stars: number[] = Array.from({ length: 5 }, (_, i) => i + 1)
+
+  const handleSubmit = () => {
+    if (rating > 0) {
+      setSubmitted(true)
+    }
+  }
+  const handleModalClose = () => {
+    setRating(0)
+    setHovered(0)
+    setSubmitted(false)
+  }
 
   return (
     <div className="rating-container">
@@ -33,11 +46,28 @@ export const Rating = ({
           />
         ))}
       </div>
+
       <div>
         {rating > 0 && (
           <p className="feedback">{ratingMessages.at(rating - 1)}</p>
         )}
       </div>
+
+      <div>
+        <button
+          className="submit-btn"
+          onClick={handleSubmit}
+          disabled={rating === 0}
+        >
+          Submit
+        </button>
+      </div>
+
+      <Modal
+        isOpen={submitted}
+        rating={rating}
+        onModalClose={handleModalClose}
+      />
     </div>
   )
 }
