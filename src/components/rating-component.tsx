@@ -2,6 +2,7 @@ import { useState } from "react"
 
 import { Star } from "./star-component.tsx"
 import { Modal } from "./modal-component.tsx"
+import { Button } from "./button-component.tsx"
 
 interface RatingProps {
   heading?: string
@@ -54,13 +55,13 @@ export const Rating = ({
       </div>
 
       <div>
-        <button
+        <Button
           className="submit-btn"
-          onClick={handleSubmit}
           disabled={rating === 0}
+          handleClick={handleSubmit}
         >
           Submit
-        </button>
+        </Button>
       </div>
 
       <Modal

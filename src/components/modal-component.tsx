@@ -1,3 +1,5 @@
+import { Button } from "./button-component"
+
 interface ModalProps {
   isOpen: boolean
   rating: number
@@ -16,9 +18,13 @@ export const Modal = ({ isOpen, rating, onModalClose }: ModalProps) => {
         <p>
           Your rated us {rating} star{rating > 1 ? "s" : ""}
         </p>
-        <button className="close-btn" onClick={onModalClose}>
+        <Button
+          className="close-btn"
+          disabled={false}
+          handleClick={onModalClose}
+        >
           Close
-        </button>
+        </Button>
       </div>
     </div>
   )
