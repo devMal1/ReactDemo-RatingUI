@@ -24,6 +24,10 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
+.rating-container:nth-child(n + 1) {
+  margin-top: 15px;
+}
+
 .stars {
   display: flex;
   justify-content: center;
